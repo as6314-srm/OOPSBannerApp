@@ -1,7 +1,3 @@
-/**
- * UC3 - OOPS Banner using String.join()
- */
-
 public class OOPSBannerApp {
 
     public static void main(String[] args) {
