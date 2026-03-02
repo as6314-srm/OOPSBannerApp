@@ -1,6 +1,12 @@
+import java.util.HashMap;
+
 public class OOPSBannerApp {
-   public static String[] getOPattern() {
-        return new String[]{
+
+    public static HashMap<Character, String[]> createCharacterMap() {
+
+        HashMap<Character, String[]> charMap = new HashMap<>();
+
+        charMap.put('O', new String[]{
                 " ***** ",
                 "*     *",
                 "*     *",
@@ -8,11 +14,9 @@ public class OOPSBannerApp {
                 "*     *",
                 "*     *",
                 " ***** "
-        };
-    }
+        });
 
-    public static String[] getPPattern() {
-        return new String[]{
+        charMap.put('P', new String[]{
                 "****** ",
                 "*     *",
                 "*     *",
@@ -20,11 +24,9 @@ public class OOPSBannerApp {
                 "*      ",
                 "*      ",
                 "*      "
-        };
-    }
+        });
 
-    public static String[] getSPattern() {
-        return new String[]{
+        charMap.put('S', new String[]{
                 " ***** ",
                 "*      ",
                 "*      ",
@@ -32,20 +34,41 @@ public class OOPSBannerApp {
                 "      *",
                 "      *",
                 " ***** "
-        };
+        });
+
+        charMap.put(' ', new String[]{
+                "       ",
+                "       ",
+                "       ",
+                "       ",
+                "       ",
+                "       ",
+                "       "
+        });
+
+        return charMap;
+    }
+
+    public static void displayBanner(String message, HashMap<Character, String[]> charMap) {
+
+        int height = charMap.get('O').length;
+
+        for (int i = 0; i < height; i++) {
+            StringBuilder line = new StringBuilder();
+
+            for (char ch : message.toCharArray()) {
+                String[] pattern = charMap.get(ch);
+                line.append(pattern[i]).append("  ");
+            }
+
+            System.out.println(line.toString());
+        }
     }
 
     public static void main(String[] args) {
 
-        String[] o = getOPattern();
-        String[] p = getPPattern();
-        String[] s = getSPattern();
-
-        for (int i = 0; i < o.length; i++) {
-            System.out.println(o[i] + "  " +
-                               o[i] + "  " +
-                               p[i] + "  " +
-                               s[i]);
-        }
+        HashMap<Character, String[]> charMap = createCharacterMap();
+        String message = "OOPS";
+        displayBanner(message, charMap);
     }
 }
